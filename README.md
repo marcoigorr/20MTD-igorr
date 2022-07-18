@@ -8,3 +8,7 @@
 
 - Invincibility
 - Infinite Ammo
+
+## How to use...
+
+Download and inject dll from the [_Releases_](https://github.com/marcoigorr/20MTD-igorr/releases)

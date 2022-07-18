@@ -2,53 +2,65 @@
 #include "pch.h"
 #include "mem.h"
 #include "console.h"
+#include "Addresses.h"
+#include "Offsets.h"
 
 bool bHealth = false, bAmmo = false;
-// flanne.Health:HPChange+a3
 
 DWORD WINAPI MainThread(HMODULE hModule)
 {
     // Create Console
     console::init();
-    std::cout << "[+] Injection succeeded! Press END to eject dll...\n" << std::endl;
+    std::cout << "[+] Injection successful! Press END to eject dll...\n" << std::endl;
+   
+    // Module handle
+    std::cout << "[+] Module base address: " << std::hex << std::uppercase << addr->moduleBase << std::endl;
 
-    // Get Module handle
-    uintptr_t moduleBase = (uintptr_t)GetModuleHandle(L"MinutesTillDawn.exe");
-    std::cout << "[+] Module base address: " << std::hex << std::uppercase << moduleBase << std::endl;
+    // UnityPlayer handle
+    std::cout << "[+] UnityPlayer.dll base address: " << addr->unityPlayer << std::endl;
 
-    uintptr_t unityPlayerDllBase = (uintptr_t)GetModuleHandleA("UnityPlayer.dll");
-    std::cout << "[+] UnityPlayer.dll base address: " << unityPlayerDllBase << std::endl;
-
-    // Get local player addr
-    uintptr_t localPlayer = unityPlayerDllBase + 0x017FE578;
-    std::cout << "[+] local Player address: " << localPlayer << std::endl;
+    // local player addr
+    std::cout << "[+] local Player address: " << addr->localPlayer << std::endl;
 
     // Hack loop
     while (!GetAsyncKeyState(VK_END))
     {
-        uintptr_t* ptrHp = (uintptr_t*)mem::FindDMAAddy(localPlayer, { 0xD38,0x6C8,0x60,0x30,0x28, 0xE8, 0x54 });
-        uintptr_t* ptrAmmo = (uintptr_t*)mem::FindDMAAddy(localPlayer, { 0x178,0x40,0x70,0x0,0xD0, 0x60, 0x40 });
+        pAddy->calcAddresses();
 
         // -- HP
         if (GetAsyncKeyState(VK_F1) & 1)
         {
             bHealth = !bHealth;
-            std::cout << "[+] Changed God mode to: " << bHealth << std::endl;            
+            std::cout << "[+] Changed God mode to: " << bHealth << std::endl; 
+
+            if (!pAddy->HP) continue;
+            if (bHealth)
+            {
+                *(int*)pAddy->HP = 4;
+                *(int*)pAddy->isInvincible = 1;
+            }
+            else
+            {
+                *(int*)pAddy->isInvincible = 0;
+            }
         } 
-        if (bHealth)
-        {
-            *(int*)ptrHp = 5;
-        }
         // -- Ammo
         if (GetAsyncKeyState(VK_F2) & 1)
         {
             bAmmo = !bAmmo;
             std::cout << "[+] Changed Unlimited ammo to: " << bAmmo << std::endl;
-        }
-        if (bAmmo)
-        {
-            *(int*)ptrAmmo = 9;
-        }
+
+            if (!pAddy->Ammo) continue;
+            if (bAmmo)
+            {
+                *(int*)pAddy->Ammo = 6;
+                *(int*)pAddy->infiniteAmmo = 1;
+            }
+            else
+            {
+                *(int*)pAddy->infiniteAmmo = 0;
+            }
+        }        
     }
 
     // Cleanup/Eject
@@ -71,4 +83,3 @@ BOOL APIENTRY DllMain( HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpRese
     }
     return TRUE;
 }
-

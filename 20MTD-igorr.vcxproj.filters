@@ -22,6 +22,12 @@
     <Filter Include="console">
       <UniqueIdentifier>{993a6bde-7c11-4017-be48-b49bb36ba5f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Addresses">
+      <UniqueIdentifier>{47a2bb8c-9f2e-492e-b7a7-37878a7b12dc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Offsets">
+      <UniqueIdentifier>{571c0645-7f04-47bd-99be-f9620d51fecc}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -36,6 +42,12 @@
     <ClInclude Include="console.h">
       <Filter>console</Filter>
     </ClInclude>
+    <ClInclude Include="Addresses.h">
+      <Filter>Addresses</Filter>
+    </ClInclude>
+    <ClInclude Include="Offsets.h">
+      <Filter>Offsets</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -49,6 +61,12 @@
     </ClCompile>
     <ClCompile Include="console.cpp">
       <Filter>console</Filter>
+    </ClCompile>
+    <ClCompile Include="Addresses.cpp">
+      <Filter>Addresses</Filter>
+    </ClCompile>
+    <ClCompile Include="Offsets.cpp">
+      <Filter>Offsets</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

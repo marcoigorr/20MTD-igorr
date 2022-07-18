@@ -12,3 +12,6 @@
 ## How to use...
 
 Download and inject dll from the [_Releases_](https://github.com/marcoigorr/20MTD-igorr/releases)
+
+<p align="left"><sub>Note: Process hacker 2 should be good</sub></p>
+

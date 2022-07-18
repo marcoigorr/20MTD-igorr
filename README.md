@@ -1,8 +1,10 @@
-# 20MTD-igorr
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/87567996/179534245-c0f3a445-8310-43b2-8cd9-d4d65cee8c63.jpg" width="140">
+</p>
 
-This is a basic inf. Ammo and inf. HP hack for 20MTD... Inject DLL and you're good to go.
+<p align="center">Internal hack for 20 Minutes Till Dawn</p>
 
-# Cheat Features
+## Cheat Features
 
 - Invincibility
 - Infinite Ammo

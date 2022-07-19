@@ -15,6 +15,8 @@ public:
 		uintptr_t* Ammo;
 		uintptr_t* infiniteAmmo;
 		uintptr_t* movementSpeed;
+		uintptr_t* level;
+		uintptr_t* xp;
 
 		static void calcAddresses();
 	};

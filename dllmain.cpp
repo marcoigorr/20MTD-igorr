@@ -14,8 +14,8 @@ DWORD WINAPI MainThread(HMODULE hModule)
 {
     // Create Console
     console::init();
-    std::cout << "[+] Injection successful! (\"END\" to eject dll)\n" << std::endl;
-    std::cout << "[+] F1 -> Invincibility\n[+] F2 -> Unlimited Ammo\n[+] F3 -> Speed Hack\n" << std::endl;
+    std::cout << "[+] Injection successful!\n" << std::endl;
+    std::cout << "[+] F1 -> Invincibility\n[+] F2 -> Unlimited Ammo\n[+] F3 -> Speed Hack\nEND -> Eject dll" << std::endl;
 
     // Hack loop
     while (!isEjecting)

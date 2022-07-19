@@ -3,12 +3,15 @@
 #include "Offsets.h"
 #include "Addresses.h"
 
+#define localPlayer addr->localPlayer
+
 void Addresses::Player::calcAddresses()
 {
-	pAddy->HP = (uintptr_t*)mem::FindDMAAddy(addr->localPlayer, offsets->HP);
-	pAddy->isInvincible = (uintptr_t*)mem::FindDMAAddy(addr->localPlayer, offsets->isInvincible);
-	pAddy->Ammo = (uintptr_t*)mem::FindDMAAddy(addr->localPlayer, offsets->Ammo);
-	pAddy->infiniteAmmo = (uintptr_t*)mem::FindDMAAddy(addr->localPlayer, offsets->infiniteAmmo);
+	pAddy->HP =			  (uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->HP);
+	pAddy->isInvincible = (uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->isInvincible);
+	pAddy->Ammo =		  (uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->Ammo);
+	pAddy->infiniteAmmo = (uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->infiniteAmmo);
+	pAddy->movementSpeed = (uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->movementSpeed);
 }
 
 Addresses* addr = new Addresses();

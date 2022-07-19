@@ -14,6 +14,7 @@ public:
 		uintptr_t* isInvincible;
 		uintptr_t* Ammo;
 		uintptr_t* infiniteAmmo;
+		uintptr_t* movementSpeed;
 
 		static void calcAddresses();
 	};

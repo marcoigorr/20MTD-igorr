@@ -143,6 +143,7 @@
     <ClInclude Include="framework.h" />
     <ClInclude Include="mem.h" />
     <ClInclude Include="Offsets.h" />
+    <ClInclude Include="Options.hpp" />
     <ClInclude Include="pch.h" />
     <ClInclude Include="Addresses.h" />
   </ItemGroup>

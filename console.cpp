@@ -7,6 +7,7 @@ void console::init()
 {
 	AllocConsole();
 	freopen_s(&c.f, "CONOUT$", "w", stdout);
+	SetConsoleTitle(L"20MTD Cheats");
 }
 
 void console::stop()

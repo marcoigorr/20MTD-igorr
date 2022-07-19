@@ -9,24 +9,26 @@
       <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
       <Extensions>h;hh;hpp;hxx;h++;hm;inl;inc;ipp;xsd</Extensions>
     </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="pch">
-      <UniqueIdentifier>{4b6ae50f-7787-4093-8894-bcd4367a2ac3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="mem">
-      <UniqueIdentifier>{71a18b6b-30c3-447b-8849-d4d190ae507d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="console">
-      <UniqueIdentifier>{993a6bde-7c11-4017-be48-b49bb36ba5f5}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Addresses">
       <UniqueIdentifier>{47a2bb8c-9f2e-492e-b7a7-37878a7b12dc}</UniqueIdentifier>
     </Filter>
     <Filter Include="Offsets">
       <UniqueIdentifier>{571c0645-7f04-47bd-99be-f9620d51fecc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Options">
+      <UniqueIdentifier>{570efda3-ac0f-4eae-aea9-dad98d857aec}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils">
+      <UniqueIdentifier>{aa2ed6ef-0ccb-45ae-814e-0b339eb795cb}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils\mem">
+      <UniqueIdentifier>{71a18b6b-30c3-447b-8849-d4d190ae507d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\pch">
+      <UniqueIdentifier>{4b6ae50f-7787-4093-8894-bcd4367a2ac3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="utils\console">
+      <UniqueIdentifier>{993a6bde-7c11-4017-be48-b49bb36ba5f5}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -34,13 +36,13 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="pch.h">
-      <Filter>pch</Filter>
+      <Filter>Header Files\pch</Filter>
     </ClInclude>
     <ClInclude Include="mem.h">
-      <Filter>mem</Filter>
+      <Filter>utils\mem</Filter>
     </ClInclude>
     <ClInclude Include="console.h">
-      <Filter>console</Filter>
+      <Filter>utils\console</Filter>
     </ClInclude>
     <ClInclude Include="Addresses.h">
       <Filter>Addresses</Filter>
@@ -48,19 +50,22 @@
     <ClInclude Include="Offsets.h">
       <Filter>Offsets</Filter>
     </ClInclude>
+    <ClInclude Include="Options.hpp">
+      <Filter>Options</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="pch.cpp">
-      <Filter>pch</Filter>
+      <Filter>Header Files\pch</Filter>
     </ClCompile>
     <ClCompile Include="mem.cpp">
-      <Filter>mem</Filter>
+      <Filter>utils\mem</Filter>
     </ClCompile>
     <ClCompile Include="console.cpp">
-      <Filter>console</Filter>
+      <Filter>utils\console</Filter>
     </ClCompile>
     <ClCompile Include="Addresses.cpp">
       <Filter>Addresses</Filter>

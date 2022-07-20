@@ -30,6 +30,9 @@
     <Filter Include="utils\console">
       <UniqueIdentifier>{993a6bde-7c11-4017-be48-b49bb36ba5f5}</UniqueIdentifier>
     </Filter>
+    <Filter Include="utils\info">
+      <UniqueIdentifier>{21cc5f5b-22e1-4be9-a18c-aa4f5ae1c6e0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">
@@ -54,7 +57,7 @@
       <Filter>Options</Filter>
     </ClInclude>
     <ClInclude Include="info.h">
-      <Filter>utils</Filter>
+      <Filter>utils\info</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -77,7 +80,7 @@
       <Filter>Offsets</Filter>
     </ClCompile>
     <ClCompile Include="info.cpp">
-      <Filter>utils</Filter>
+      <Filter>utils\info</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

@@ -1,4 +1,9 @@
 #pragma once
 
-void printManual();
+namespace info
+{
+	void checkStatus();
+	void printFeatures();
+}
+
 

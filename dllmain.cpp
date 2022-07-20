@@ -16,41 +16,60 @@ DWORD WINAPI MainThread(HMODULE hModule)
 {
     // Create Console
     console::init();
-    std::cout << "[+] Injection successful!\n" << std::endl; 
+    std::cout << "  [+] Injection successful!\n" << std::endl;   
 
-    printManual(); // print hack features
+    // Calculte game addresses
+    addr->calcAddresses();
+
+    // Check status of the addresses needed for the cheats
+    info::checkStatus();
+
+    // print hack features
+    info::printFeatures();
+
+    auto t = std::chrono::system_clock::now();
 
     // Hack loop
     while (!isEjecting)
     {
-        isEjecting = ((GetAsyncKeyState(VK_END) & 1) ? true : false);
+        isEjecting = ((GetAsyncKeyState(VK_END) & 1) ? true : false);        
 
-        // Calculte game addresses each cycle
-        addr->calcAddresses();
+        auto end = std::chrono::system_clock::now();
+
+        // if more than 2s passed, update console
+        if (((std::chrono::duration<double>)(end - t)).count() > 2.0)
+        {
+            addr->calcAddresses();
+
+            info::checkStatus();
+
+            info::printFeatures();
+
+            // reset timer
+            t = std::chrono::system_clock::now();
+        }        
 
         // -- HP
         if (GetAsyncKeyState(VK_F1) & 1 || isEjecting)
         {
             bHealth = (!isEjecting) ? !bHealth : false;
-            std::cout << "[+] Changed Invincibility to: " << bHealth << std::endl; 
 
             if (!cHealth->HP) continue;
             if (bHealth) 
-            {                
+            {      
+                if (bHealth) *(int*)cHealth->HP = 6;
                 *(int*)cHealth->isInvincible = 1;
             }
             else 
             {
                 *(int*)cHealth->isInvincible = 0;
             }
-        } 
-        if (bHealth) *(int*)cHealth->HP = 6;
+        }        
 
         // -- Ammo
         if (GetAsyncKeyState(VK_F2) & 1 || isEjecting)
         {
             bAmmo = (!isEjecting) ? !bAmmo : false;
-            std::cout << "[+] Changed Unlimited Ammo to: " << bAmmo << std::endl;
 
             if (!cAmmo->Ammo) continue;
             if (bAmmo) 
@@ -68,7 +87,6 @@ DWORD WINAPI MainThread(HMODULE hModule)
         if (GetAsyncKeyState(VK_F3) & 1 || isEjecting)
         {
             bSpeed = (!isEjecting) ? !bSpeed : false;
-            std::cout << "[+] Changed Speed Hack to: " << bSpeed << std::endl;
 
             if (!cPlayerController->movementSpeed) continue;
             if (bSpeed) 
@@ -79,14 +97,12 @@ DWORD WINAPI MainThread(HMODULE hModule)
             { 
                 *(float*)cPlayerController->movementSpeed = 3;
             }               
-        }
-        Sleep(50);
+        }        
 
         // -- double XP
         if (GetAsyncKeyState(VK_F4) & 1 || isEjecting)
         {
             bDoubleXP = (!isEjecting) ? !bDoubleXP : false;
-            std::cout << "[+] Changed double XP to: " << bDoubleXP << std::endl;
 
             if (!cStatMod->multiplierBonus) continue;
             if (bDoubleXP)
@@ -101,7 +117,7 @@ DWORD WINAPI MainThread(HMODULE hModule)
     }
 
     // Cleanup/Eject
-    std::cout << "[+] Ejecting...";
+    std::cout << "\n  [+] Ejecting...";
     console::stop();
     FreeLibraryAndExitThread(hModule, 0);
     return 0;

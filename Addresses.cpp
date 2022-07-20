@@ -5,16 +5,25 @@
 
 #define localPlayer addr->localPlayer
 
-void Addresses::Player::calcAddresses()
+void Addresses::calcAddresses()
 {
-	pAddy->HP =			   (uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->HP);
-	pAddy->isInvincible =  (uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->isInvincible);
-	pAddy->Ammo =		   (uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->Ammo);
-	pAddy->infiniteAmmo =  (uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->infiniteAmmo);
-	pAddy->movementSpeed = (uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->movementSpeed);
-	pAddy->level =		   (uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->level);
-	pAddy->xp =			   (uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->xp);
+	cHealth->HP =						(uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->HP);
+	cHealth->isInvincible =				(uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->isInvincible);
+	cAmmo->Ammo =						(uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->Ammo);
+	cAmmo->infiniteAmmo =				(uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->infiniteAmmo);
+	cPlayerController->movementSpeed =  (uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->movementSpeed);
+	cPlayerXP->level =					(uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->level);
+	cPlayerXP->xp =						(uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->xp);
+	cStatMod->flatBonus =				(uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->flatBonus);
+	cStatMod->multiplierBonus =			(uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->multiplierBonus);
+	cStatMod->multiplierReduction =		(uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->multiplierReduction);
+
 }
 
-Addresses* addr = new Addresses();
-Addresses::Player* pAddy = new Addresses::Player();
+extern Addresses* addr = new Addresses;
+extern flanne::Health* cHealth = new flanne::Health();
+extern flanne::Ammo* cAmmo = new flanne::Ammo();
+extern flanne::PlayerController* cPlayerController = new flanne::PlayerController();
+extern flanne::Player::PlayerXP* cPlayerXP = new flanne::Player::PlayerXP();
+extern flanne::StatMod* cStatMod = new flanne::StatMod();
+

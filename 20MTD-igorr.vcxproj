@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClInclude Include="console.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="info.h" />
     <ClInclude Include="mem.h" />
     <ClInclude Include="Offsets.h" />
     <ClInclude Include="Options.hpp" />
@@ -150,6 +151,7 @@
   <ItemGroup>
     <ClCompile Include="console.cpp" />
     <ClCompile Include="dllmain.cpp" />
+    <ClCompile Include="info.cpp" />
     <ClCompile Include="mem.cpp" />
     <ClCompile Include="Offsets.cpp" />
     <ClCompile Include="pch.cpp">

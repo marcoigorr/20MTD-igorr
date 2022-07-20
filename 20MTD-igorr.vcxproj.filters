@@ -53,6 +53,9 @@
     <ClInclude Include="Options.hpp">
       <Filter>Options</Filter>
     </ClInclude>
+    <ClInclude Include="info.h">
+      <Filter>utils</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="dllmain.cpp">
@@ -72,6 +75,9 @@
     </ClCompile>
     <ClCompile Include="Offsets.cpp">
       <Filter>Offsets</Filter>
+    </ClCompile>
+    <ClCompile Include="info.cpp">
+      <Filter>utils</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

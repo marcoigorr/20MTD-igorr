@@ -3,6 +3,6 @@
 namespace Options
 {
 	bool isEjecting = false;
-	bool bHealth = false, bAmmo = false, bSpeed = false;
+	bool bHealth = false, bAmmo = false, bSpeed = false, bDoubleXP = false;
 }
 	

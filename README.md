@@ -8,10 +8,15 @@
 
 - Invincibility
 - Infinite Ammo
+- Speed Hack
+- Double XP
 
 ## How to use...
 
-Download and inject dll from the [_Releases_](https://github.com/marcoigorr/20MTD-igorr/releases)
+Download and inject dll from the lastest [_Release_](https://github.com/marcoigorr/20MTD-igorr/releases/tag/1.1.0)
 
 <p align="left"><sub>Note: Process hacker 2 should be good</sub></p>
 
+## Console Preview
+
+![20MTD Preview](https://user-images.githubusercontent.com/87567996/180062952-c23f01fa-fb2d-4ce1-b41d-fc5a1096966e.JPG)

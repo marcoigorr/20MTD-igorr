@@ -6,10 +6,10 @@
 constexpr auto AVAIL = "AVAILABLE";
 constexpr auto UNAVAIL = "UNAVAILABLE";
  
-const char* sHealth;
-const char* sAmmo;
-const char* sSpeedHack;
-const char* sDoubleXP;
+const char* sHealth = UNAVAIL;
+const char* sAmmo = UNAVAIL;
+const char* sSpeedHack = UNAVAIL;
+const char* sDoubleXP = UNAVAIL;
 
 void info::checkStatus()
 {
@@ -39,7 +39,7 @@ void info::printFeatures()
 	// Clear console
 	system("cls");
 
-	std::cout << " 20 Minutes Till Dawn Cheats v1.1.2 - by marcoigorr\n" << std::endl;
+	std::cout << " 20 Minutes Till Dawn Cheats v1.1.0 - by marcoigorr\n" << std::endl;
 	std::cout << "  [+] F1 - Invincibility " << "  ( " << sHealth << " )" << std::endl;
 	std::cout << "  [+] F2 - Unlimited Ammo " << " ( " << sAmmo << " )" << std::endl;
 	std::cout << "  [+] F3 - Speed Hack " << "     ( " << sSpeedHack << " )" << std::endl;

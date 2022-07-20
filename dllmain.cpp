@@ -18,10 +18,10 @@ DWORD WINAPI MainThread(HMODULE hModule)
     console::init();
     std::cout << "  [+] Injection successful!\n" << std::endl;   
 
-    // Calculte game addresses
+    // Calculate game memory addresses
     addr->calcAddresses();
 
-    // Check status of the addresses needed for the cheats
+    // Check status of the addresses
     info::checkStatus();
 
     // print hack features

@@ -17,6 +17,20 @@ Download and inject dll from the lastest [_Release_](https://github.com/marcoigo
 
 <p align="left"><sub>Note: Process hacker 2 should be good</sub></p>
 
-## Console Preview
+## Cheat Preview
 
-![20MTD Preview](https://user-images.githubusercontent.com/87567996/180062952-c23f01fa-fb2d-4ce1-b41d-fc5a1096966e.JPG)
+- **v2.0.0**
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/87567996/180301454-7d08eb7d-2e28-460e-9e9b-cb7010f83a52.JPG" width="600">
+</p>
+
+- **v1.1.0**
+
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/87567996/180062952-c23f01fa-fb2d-4ce1-b41d-fc5a1096966e.JPG" width="600">
+</p>
+
+## Credits
+
+D3D11 x64bit hook and ImGUI implementation: [Kiero](https://github.com/rdbo/ImGui-DirectX-11-Kiero-Hook)

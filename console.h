@@ -1,11 +1,12 @@
 #pragma once
 
-class console
+class Console
 {
 public:
 	FILE* f;
 
-	static void init();
-	static void stop();
+	static void Init();
+	static void Stop();
 };
 
+extern Console* cmd;

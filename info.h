@@ -2,8 +2,12 @@
 
 namespace info
 {
-	void checkStatus();
-	void printFeatures();
+	extern bool sHealth;
+	extern bool sAmmo;
+	extern bool sSpeedHack;
+	extern bool sDoubleXP;
+
+	void checkBadPointers();
 }
 
 

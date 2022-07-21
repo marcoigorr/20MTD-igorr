@@ -3,48 +3,35 @@
 
 #include "Addresses.h"
 
-constexpr auto AVAIL = "AVAILABLE";
-constexpr auto UNAVAIL = "UNAVAILABLE";
+constexpr auto AVAIL = true;
+constexpr auto UNAVAIL = false;
  
-const char* sHealth = UNAVAIL;
-const char* sAmmo = UNAVAIL;
-const char* sSpeedHack = UNAVAIL;
-const char* sDoubleXP = UNAVAIL;
+bool info::sHealth = UNAVAIL;
+bool info::sAmmo = UNAVAIL;
+bool info::sSpeedHack = UNAVAIL;
+bool info::sDoubleXP = UNAVAIL;
 
-void info::checkStatus()
+void info::checkBadPointers()
 {
 	if (!cHealth->isInvincible) 
-		sHealth = UNAVAIL;
+		info::sHealth = UNAVAIL;
 	else
-		sHealth = AVAIL;
+		info::sHealth = AVAIL;
 
 	if (!cAmmo->infiniteAmmo) 
-		sAmmo = UNAVAIL;
+		info::sAmmo = UNAVAIL;
 	else 
-		sAmmo = AVAIL;
+		info::sAmmo = AVAIL;
 
 	if (!cPlayerController->movementSpeed) 
-		sSpeedHack = UNAVAIL;	
+		info::sSpeedHack = UNAVAIL;
 	else 
-		sSpeedHack = AVAIL;
+		info::sSpeedHack = AVAIL;
 
 	if (!cStatMod->multiplierBonus) 
-		sDoubleXP = UNAVAIL;	
+		info::sDoubleXP = UNAVAIL;
 	else 
-		sDoubleXP = AVAIL;
+		info::sDoubleXP = AVAIL;
 }
 
-void info::printFeatures()
-{
-	// Clear console
-	system("cls");
-
-	std::cout << " 20 Minutes Till Dawn Cheats v1.1.0 - by marcoigorr\n" << std::endl;
-	std::cout << "  [+] F1 - Invincibility " << "  ( " << sHealth << " )" << std::endl;
-	std::cout << "  [+] F2 - Unlimited Ammo " << " ( " << sAmmo << " )" << std::endl;
-	std::cout << "  [+] F3 - Speed Hack " << "     ( " << sSpeedHack << " )" << std::endl;
-	std::cout << "  [+] F4 - Double XP " << "      ( " << sDoubleXP << " )" << std::endl;
-
-	std::cout << "\n  [+] END -> Eject DLL\n" << std::endl;	
-}
 

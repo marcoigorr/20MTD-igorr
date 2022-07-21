@@ -1,125 +1,132 @@
 // dllmain.cpp : Defines the entry point for the DLL application.
 #include "pch.h"
 #include "mem.h"
-#include "console.h"
 
 #include "Addresses.h"
 #include "Offsets.h"
 
-#include "Options.hpp"
-using namespace Options;
+#include "Options.h"
+
+#include "DX11.h"
+using namespace d3d11Menu;
 
 #include "info.h"
+#include "console.h"
 
+#define isEjecting options->isEjecting
 
 DWORD WINAPI MainThread(HMODULE hModule)
 {
     // Create Console
-    console::init();
-    std::cout << "  [+] Injection successful!\n" << std::endl;   
+    cmd->Init();
+    std::cout << "[+] Dll Injection succeeded!" << std::endl;  
+    Sleep(500);
 
-    // Calculate game memory addresses
-    addr->calcAddresses();
+    std::cout << "[+] Initializing Cheat Menu... ";
+    Sleep(500);
+    // Hook d3d11, render ImGUI
+    if (!InitMenu())
+    {
+        std::cout << "FAILED" <<  std::endl;
+        std::cout << "[+] Hook failed. Ejecting dll... ";
+        isEjecting = true;
+        Sleep(1500);
+    }
+    else
+    {
+        std::cout << "OK" << std::endl;
+        std::cout << "[+] Success! Initializing cheats... ";   
+    }
+    Sleep(500);
 
-    // Check status of the addresses
-    info::checkStatus();
-
-    // print hack features
-    info::printFeatures();
-
-    auto t = std::chrono::system_clock::now();
+    // Close console
+    cmd->Stop();
 
     // Hack loop
     while (!isEjecting)
     {
-        isEjecting = ((GetAsyncKeyState(VK_END) & 1) ? true : false);        
+        // Press END to eject dll
+        isEjecting = ((GetAsyncKeyState(VK_END)) ? true : false);
 
-        auto end = std::chrono::system_clock::now();
+        // Calculate game memory addresses
+        if (!isEjecting) addr->calcAddresses();
 
-        // if more than 2s passed, update console
-        if (((std::chrono::duration<double>)(end - t)).count() > 2.0)
+        if (isEjecting)
         {
-            addr->calcAddresses();
+            options->SetAllFalse();
+        }       
 
-            info::checkStatus();
+        // -- Menu
+        if (GetAsyncKeyState(VK_INSERT) & 1)
+        {
+            options->bMenu = !options->bMenu;
+        }
 
-            info::printFeatures();
-
-            // reset timer
-            t = std::chrono::system_clock::now();
-        }        
+        // check if the address is valid
+        info::checkBadPointers();
 
         // -- HP
-        if (GetAsyncKeyState(VK_F1) & 1 || isEjecting)
+        if (cHealth->isInvincible) // need this for extra security
         {
-            bHealth = (!isEjecting) ? !bHealth : false;
-
-            if (!cHealth->HP) continue;
-            if (bHealth) 
-            {      
-                if (bHealth) *(int*)cHealth->HP = 6;
+            if (options->bHealth)
+            {
+                *(int*)cHealth->HP = 6;
                 *(int*)cHealth->isInvincible = 1;
             }
-            else 
+            else
             {
                 *(int*)cHealth->isInvincible = 0;
             }
-        }        
+        }
 
         // -- Ammo
-        if (GetAsyncKeyState(VK_F2) & 1 || isEjecting)
+        if (cAmmo->infiniteAmmo)
         {
-            bAmmo = (!isEjecting) ? !bAmmo : false;
-
-            if (!cAmmo->Ammo) continue;
-            if (bAmmo) 
-            { 
-                *(int*)cAmmo->Ammo = 6; 
+            if (options->bAmmo)
+            {
+                *(int*)cAmmo->Ammo = 6;
                 *(int*)cAmmo->infiniteAmmo = 1;
             }
-            else 
-            { 
-                *(int*)cAmmo->infiniteAmmo = 0; 
-            }                
-        }  
+            else
+            {
+                *(int*)cAmmo->infiniteAmmo = 0;
+            }
+        }
 
         // -- Speed
-        if (GetAsyncKeyState(VK_F3) & 1 || isEjecting)
+        if (cPlayerController->movementSpeed)
         {
-            bSpeed = (!isEjecting) ? !bSpeed : false;
-
-            if (!cPlayerController->movementSpeed) continue;
-            if (bSpeed) 
+            if (options->bSpeedHack)
             {
-                *(float*)cPlayerController->movementSpeed = 8; 
+                *(float*)cPlayerController->movementSpeed = 8;
             }
-            else 
-            { 
+            else
+            {
                 *(float*)cPlayerController->movementSpeed = 3;
-            }               
-        }        
+            }
+        }
 
         // -- double XP
-        if (GetAsyncKeyState(VK_F4) & 1 || isEjecting)
+        if (cStatMod->multiplierBonus)
         {
-            bDoubleXP = (!isEjecting) ? !bDoubleXP : false;
-
-            if (!cStatMod->multiplierBonus) continue;
-            if (bDoubleXP)
+            if (options->bDoubleXP)
             {
-                *(float*)cStatMod->multiplierBonus = 1; // 1 additional xp
+                *(float*)cStatMod->multiplierBonus = 1;
             }
             else
             {
                 *(float*)cStatMod->multiplierBonus = 0;
             }
-        }
+        }    
+         
     }
 
-    // Cleanup/Eject
-    std::cout << "\n  [+] Ejecting...";
-    console::stop();
+    // Cleanup/Eject    
+    if (!StopMenu()) {
+        return 1;
+    }
     FreeLibraryAndExitThread(hModule, 0);
+    
     return 0;
 }
 
@@ -128,7 +135,7 @@ BOOL APIENTRY DllMain( HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpRese
     switch (ul_reason_for_call)
     {
     case DLL_PROCESS_ATTACH:
-        CloseHandle(CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)MainThread, hModule, NULL, NULL));
+        CreateThread(NULL, NULL, (LPTHREAD_START_ROUTINE)MainThread, hModule, NULL, NULL);
     case DLL_THREAD_ATTACH:
     case DLL_THREAD_DETACH:
     case DLL_PROCESS_DETACH:
@@ -136,3 +143,18 @@ BOOL APIENTRY DllMain( HMODULE hModule, DWORD  ul_reason_for_call, LPVOID lpRese
     }
     return TRUE;
 }
+
+
+
+/*
+ auto end = std::chrono::system_clock::now();
+        if (((std::chrono::duration<double>)(end - t)).count() > 0.5 && !isEjecting)
+        {
+
+
+            // reset timer
+            t = std::chrono::system_clock::now();
+        }  
+
+        auto t = std::chrono::system_clock::now();
+*/

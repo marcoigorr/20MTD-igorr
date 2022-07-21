@@ -1,17 +1,17 @@
 #include "pch.h"
 #include "console.h"
 
-static console c;
-
-void console::init()
+void Console::Init()
 {
 	AllocConsole();
-	freopen_s(&c.f, "CONOUT$", "w", stdout);
+	freopen_s(&cmd->f, "CONOUT$", "w", stdout);
 	SetConsoleTitle(L"20MTD Cheats");
 }
 
-void console::stop()
+void Console::Stop()
 {
-	fclose(c.f);
+	fclose(cmd->f);
 	FreeConsole();
 }
+
+Console* cmd = new Console();

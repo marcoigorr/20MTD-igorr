@@ -22,7 +22,7 @@ Download and inject dll from the lastest [_Release_](https://github.com/marcoigo
 - **v2.0.0**
 
 <p align="center">
-  <img src="https://user-images.githubusercontent.com/87567996/180301454-7d08eb7d-2e28-460e-9e9b-cb7010f83a52.JPG" width="600">
+  <img src="https://user-images.githubusercontent.com/87567996/180302404-f6f6dbb7-f6e0-44c1-9d94-fe24916c8fb4.jpg" width="600">
 </p>
 
 - **v1.1.0**

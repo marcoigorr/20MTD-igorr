@@ -13,7 +13,7 @@
 
 ## How to use...
 
-Download and inject dll from the lastest [_Release_](https://github.com/marcoigorr/20MTD-igorr/releases/tag/1.1.0)
+Download and inject while in the menu dll from the lastest [_Release_](https://github.com/marcoigorr/20MTD-igorr/releases/tag/1.1.0)
 
 <p align="left"><sub>Note: Process hacker 2 should be good</sub></p>
 

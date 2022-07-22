@@ -17,6 +17,7 @@ void MyMenu::SetStyle()
     // Colors
     style.Colors[ImGuiCol_TitleBg] = ImVec4(0.000f, 0.000f, 0.000f, 0.000f);
     style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.000f, 0.000f, 0.000f, 0.000f);
+    style.Colors[ImGuiCol_WindowBg] = ImVec4(0.200f, 0.200f, 0.200f, 0.800f);
 
     style.Colors[ImGuiCol_Border] = ImVec4(1.000f, 0.000f, 0.647f, 1.000f);
     style.Colors[ImGuiCol_Separator] = ImVec4(1.000f, 0.000f, 0.647f, 1.000f);
@@ -53,7 +54,7 @@ void MyMenu::SetStyle()
 
     style.TabRounding = 9.0f;
     
-    style.GrabRounding = 12.0f;
+    style.GrabRounding = 10.0f;
     style.GrabMinSize = 15.0f;
 
     style.ScrollbarSize = 17.0f;   
@@ -114,20 +115,33 @@ void  MyMenu::Draw()
 
                     if (info::sHealth)
                     {
-
+                        AddSlider<int>("HP", *(int*)cHealth->HP, 1, 10);
+                        AddSlider<int>("maxHP", *(int*)cHealth->maxHP, 1, 10);
                     }
 
                     ImGui::EndTabItem();
                 }
 
-                if (ImGui::BeginTabItem("Ammo"))
+                if (ImGui::BeginTabItem("Gun"))
                 {
                     AddStatus(info::sAmmo);
                     AddCheckBox("Infinite Ammo", &options->bAmmo);
 
                     if (info::sAmmo)
                     {
-                        AddSlider<int>("Ammo", *(int*)cAmmo->Ammo, 0, 50);
+                        AddSlider<int>("Ammo",              *(int*)cAmmo->Ammo, 0, 31);
+                        AddSlider<int>("maxAmmo",           *(int*)cGunData->maxAmmo, 0, 31);
+                        AddSlider<float>("Damage",          *(float*)cGunData->damage, 0, 200);
+                        AddSlider<float>("ShootCoolDown", *(float*)cGunData->shootCooldown, 0, 10);
+                        AddSlider<float>("ReloadDuration",  *(float*)cGunData->reloadDuration, 0, 5);
+                        AddSlider<int>("numOfProjectiles",  *(int*)cGunData->numOfProjectiles, 1, 20);
+                        AddSlider<int>("spread",            *(int*)cGunData->spread, 0, 100);
+                        AddSlider<float>("knockback",       *(float*)cGunData->knockback, 0, 100);
+                        AddSlider<float>("projectileSpeed", *(float*)cGunData->projectileSpeed, 1, 200); 
+                        AddSlider<int>("bounce",            *(int*)cGunData->bounce, 0, 8);
+                        AddSlider<int>("piercing",          *(int*)cGunData->piercing, 0, 20);
+                        AddSlider<float>("burnChance",      *(float*)cGunData, 0, 10);
+                        AddSlider<float>("inaccuracy",      *(float*)cGunData->inaccuracy, 0, 5);
                     }                    
 
                     ImGui::EndTabItem();
@@ -140,7 +154,7 @@ void  MyMenu::Draw()
 
                     if (info::sSpeedHack)
                     {
-                        AddSlider<float>("movementSpeed", *(float*)cPlayerController->movementSpeed, 3.f, 10.f);
+                        AddSlider<float>("movementSpeed", *(float*)cPlayerController->movementSpeed, 3, 10);
                     }                    
 
                     ImGui::EndTabItem();

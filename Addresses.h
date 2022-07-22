@@ -22,7 +22,6 @@ namespace flanne
 	class Ammo
 	{
 	public:
-		uintptr_t* maxAmmo;
 		uintptr_t* Ammo;
 		uintptr_t* infiniteAmmo;
 	};
@@ -51,6 +50,24 @@ namespace flanne
 		uintptr_t* multiplierBonus;
 		uintptr_t* multiplierReduction;
 	};
+
+	class GunData
+	{
+	public:
+		uintptr_t* damage;
+		uintptr_t* shootCooldown;
+		uintptr_t* maxAmmo;
+		uintptr_t* reloadDuration;
+		uintptr_t* numOfProjectiles;
+		uintptr_t* spread;
+		uintptr_t* knockback;
+		uintptr_t* projectileSpeed;
+		uintptr_t* bounce;
+		uintptr_t* piercing;
+		uintptr_t* burnChance;
+		uintptr_t* inaccuracy;
+		uintptr_t* isSummonGun;
+	};
 }
 
 extern Addresses* addr;
@@ -59,3 +76,4 @@ extern flanne::Ammo* cAmmo;
 extern flanne::PlayerController* cPlayerController;
 extern flanne::Player::PlayerXP* cPlayerXP;
 extern flanne::StatMod* cStatMod;
+extern flanne::GunData* cGunData;

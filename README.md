@@ -33,4 +33,4 @@ Download and inject while in the menu dll from the lastest [_Release_](https://g
 
 ## Credits
 
-D3D11 x64bit hook and ImGUI implementation: [Kiero](https://github.com/rdbo/ImGui-DirectX-11-Kiero-Hook)
+For the D3D11 x64bit hook and ImGUI implementation: [Kiero](https://github.com/rdbo/ImGui-DirectX-11-Kiero-Hook)

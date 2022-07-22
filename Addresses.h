@@ -14,6 +14,7 @@ namespace flanne
 	class Health
 	{
 	public:
+		uintptr_t* maxHP;
 		uintptr_t* HP;
 		uintptr_t* isInvincible;
 	};
@@ -21,6 +22,7 @@ namespace flanne
 	class Ammo
 	{
 	public:
+		uintptr_t* maxAmmo;
 		uintptr_t* Ammo;
 		uintptr_t* infiniteAmmo;
 	};

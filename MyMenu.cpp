@@ -5,6 +5,11 @@
 
 #include "info.h"
 
+#include "Addresses.h"
+
+#include <type_traits>
+
+
 void MyMenu::SetStyle()
 {
     ImGuiStyle& style = ImGui::GetStyle();
@@ -75,9 +80,20 @@ void AddStatus(bool b)
     ImGui::TextColored((b) ? Green : Red, (b) ? "AVAILABLE" : "UNAVAILABLE");
 }
 
-void AddSlider()
+template <typename T>
+void AddSlider(const char* label, T& value, T v_min, T v_max)
 {
+    ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPosX(), ImGui::GetCursorPosY() + 10));
 
+    if constexpr (std::is_integral_v<T>)
+    {
+        ImGui::SliderInt(label, &value, v_min, v_max);
+    }
+
+    if constexpr (std::is_floating_point_v<T>)
+    {
+        ImGui::SliderFloat(label, &value, v_min, v_max);
+    }
 }
 
 void  MyMenu::Draw()
@@ -93,9 +109,13 @@ void  MyMenu::Draw()
             {
                 if (ImGui::BeginTabItem("Health"))
                 {
-                    AddStatus(info::sHealth);
-                    
+                    AddStatus(info::sHealth);                    
                     AddCheckBox("Is Invincible", &options->bHealth);
+
+                    if (info::sHealth)
+                    {
+
+                    }
 
                     ImGui::EndTabItem();
                 }
@@ -103,8 +123,12 @@ void  MyMenu::Draw()
                 if (ImGui::BeginTabItem("Ammo"))
                 {
                     AddStatus(info::sAmmo);
-
                     AddCheckBox("Infinite Ammo", &options->bAmmo);
+
+                    if (info::sAmmo)
+                    {
+                        AddSlider<int>("Ammo", *(int*)cAmmo->Ammo, 0, 50);
+                    }                    
 
                     ImGui::EndTabItem();
                 }
@@ -112,8 +136,12 @@ void  MyMenu::Draw()
                 if (ImGui::BeginTabItem("Speed"))
                 {
                     AddStatus(info::sSpeedHack);
-
                     AddCheckBox("Speed Hack", &options->bSpeedHack);
+
+                    if (info::sSpeedHack)
+                    {
+                        AddSlider<float>("movementSpeed", *(float*)cPlayerController->movementSpeed, 3.f, 10.f);
+                    }                    
 
                     ImGui::EndTabItem();
                 }
@@ -121,8 +149,12 @@ void  MyMenu::Draw()
                 if (ImGui::BeginTabItem("XP"))
                 {
                     AddStatus(info::sDoubleXP);
-
                     AddCheckBox("Double XP", &options->bDoubleXP);
+
+                    if (info::sDoubleXP)
+                    {
+
+                    }
 
                     ImGui::EndTabItem();
                 }

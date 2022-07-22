@@ -70,7 +70,6 @@ DWORD WINAPI MainThread(HMODULE hModule)
         {
             if (options->bHealth)
             {
-                *(int*)cHealth->HP = 6;
                 *(int*)cHealth->isInvincible = 1;
             }
             else
@@ -84,7 +83,6 @@ DWORD WINAPI MainThread(HMODULE hModule)
         {
             if (options->bAmmo)
             {
-                *(int*)cAmmo->Ammo = 6;
                 *(int*)cAmmo->infiniteAmmo = 1;
             }
             else
@@ -96,24 +94,18 @@ DWORD WINAPI MainThread(HMODULE hModule)
         // -- Speed
         if (cPlayerController->movementSpeed)
         {
-            if (options->bSpeedHack)
-            {
-                *(float*)cPlayerController->movementSpeed = 8;
-            }
-            else
+            // reset movementSpeed
+            if (!options->bSpeedHack)
             {
                 *(float*)cPlayerController->movementSpeed = 3;
             }
         }
 
-        // -- double XP
+        // -- XP
         if (cStatMod->multiplierBonus)
         {
-            if (options->bDoubleXP)
-            {
-                *(float*)cStatMod->multiplierBonus = 1;
-            }
-            else
+            // reset xp multiplier
+            if (!options->bDoubleXP)
             {
                 *(float*)cStatMod->multiplierBonus = 0;
             }

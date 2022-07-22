@@ -18,3 +18,4 @@ void Options::SetAllTrue()
 }
 
 Options* options = new Options();
+Options::FeatureValues* fValues = new Options::FeatureValues();

@@ -15,6 +15,16 @@ public:
 
 	 static void SetAllFalse();
 	 static void SetAllTrue();
+
+	 class FeatureValues
+	 {
+	 public:
+		 int vHP;
+		 int vAmmo;
+		 int vMovementSpeed = 3;
+		 int vLevel;
+	 };
 };
 
 extern Options* options;
+extern Options::FeatureValues* fValues;

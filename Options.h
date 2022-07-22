@@ -9,9 +9,8 @@ public:
 	bool bMenu = true;
 	bool bHealth = false, bAmmo = false, bSpeedHack = false, bDoubleXP = false;
 
-	bool features[5] = {
-		bMenu,
-		bHealth, bAmmo, bSpeedHack, bDoubleXP,
+	bool* features[4] = {
+		&bHealth, &bAmmo, &bSpeedHack, &bDoubleXP,
 	};
 
 	 static void SetAllFalse();

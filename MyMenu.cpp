@@ -87,7 +87,7 @@ void  MyMenu::Draw()
 	{	
 		ImGui::SetNextWindowSize({ Menu->WIDTH,  Menu->HEIGHT });
 
-        ImGui::Begin("marcoigorr v1.1.0", &options->bMenu, 0);
+        ImGui::Begin("marcoigorr v2.0.1", &options->bMenu, 0);
         {
             if (ImGui::BeginTabBar("tabs"))
             {

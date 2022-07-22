@@ -3,17 +3,17 @@
 
 void Options::SetAllFalse()
 {
-	for (int i = 0; i < sizeof(options->features) / sizeof(int); i++)
+	for (int i = 0; i < 4; i++)
 	{
-		options->features[i] = false;
+		*options->features[i] = false;
 	}
 }
 
 void Options::SetAllTrue()
 {
-	for (int i = 0; i < sizeof(options->features) / sizeof(int); i++)
+	for (int i = 0; i < 4; i++)
 	{
-		options->features[i] = true;
+		*options->features[i] = true;
 	}
 }
 

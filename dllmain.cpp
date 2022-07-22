@@ -117,8 +117,16 @@ DWORD WINAPI MainThread(HMODULE hModule)
             {
                 *(float*)cStatMod->multiplierBonus = 0;
             }
-        }    
-         
+        }   
+
+        if (GetAsyncKeyState(VK_F1) & 1)
+        {
+            options->SetAllFalse();
+        }
+        if (GetAsyncKeyState(VK_F2) & 1)
+        {
+            options->SetAllTrue();
+        }
     }
 
     // Cleanup/Eject    

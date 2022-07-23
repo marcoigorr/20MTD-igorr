@@ -6,10 +6,10 @@
 
 ## Cheat Features
 
-- Invincibility
-- Infinite Ammo
-- Speed Hack
-- Double XP
+- Health data manipulation
+- Gun data manipulation
+- Speed manipulation
+- XP manipulation
 
 ## How to use...
 

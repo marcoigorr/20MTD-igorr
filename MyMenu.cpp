@@ -162,7 +162,7 @@ void  MyMenu::Draw()
 
                     if (info::sDoubleXP)
                     {
-
+                        AddSlider<float>("Additional XP", &*(float*)cStatMod->multiplierBonus, 0.f, 10.f);
                     }
 
                     ImGui::EndTabItem();

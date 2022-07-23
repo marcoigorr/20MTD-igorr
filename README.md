@@ -13,6 +13,9 @@
 
 ## How to use...
 
+- INS to hide/unhide menu
+- END to eject the dll
+
 Download and inject while in the menu dll from the lastest [_Release_](https://github.com/marcoigorr/20MTD-igorr/releases/tag/1.1.0)
 
 <p align="left"><sub>Note: Process hacker 2 should be good</sub></p>

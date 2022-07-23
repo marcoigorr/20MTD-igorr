@@ -9,6 +9,7 @@
 #include <Psapi.h>
 #include <vector>
 #include <chrono>
+#include <type_traits>
 
 #include "MinHook/MinHook.h"
 #pragma comment(lib, "MinHook/libMinHook.x64.lib")

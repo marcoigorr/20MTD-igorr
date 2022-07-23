@@ -19,10 +19,7 @@ public:
 	 class FeatureValues
 	 {
 	 public:
-		 int vHP;
-		 int vAmmo;
 		 int vMovementSpeed = 3;
-		 int vLevel;
 	 };
 };
 

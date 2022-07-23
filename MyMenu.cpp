@@ -2,12 +2,8 @@
 #include "MyMenu.h"
 
 #include "Options.h"
-
 #include "info.h"
-
 #include "Addresses.h"
-
-#include <type_traits>
 
 
 void MyMenu::SetStyle()
@@ -17,7 +13,7 @@ void MyMenu::SetStyle()
     // Colors
     style.Colors[ImGuiCol_TitleBg] = ImVec4(0.000f, 0.000f, 0.000f, 0.000f);
     style.Colors[ImGuiCol_TitleBgActive] = ImVec4(0.000f, 0.000f, 0.000f, 0.000f);
-    style.Colors[ImGuiCol_WindowBg] = ImVec4(0.200f, 0.200f, 0.200f, 0.800f);
+    style.Colors[ImGuiCol_WindowBg] = ImVec4(0.200f, 0.200f, 0.200f, 0.420f);
 
     style.Colors[ImGuiCol_Border] = ImVec4(1.000f, 0.000f, 0.647f, 1.000f);
     style.Colors[ImGuiCol_Separator] = ImVec4(1.000f, 0.000f, 0.647f, 1.000f);
@@ -70,6 +66,12 @@ void AddCheckBox(const char* title, bool* var)
     ImGui::Checkbox(title, var);
 }
 
+bool AddButton(const char* title)
+{
+    ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPos().x + 10, ImGui::GetCursorPos().y + 20));
+    return ImGui::Button(title, ImVec2(110.0f, 30.0f));
+}
+
 ImVec4 Red = ImVec4(1.0f, 0, 0, 1.0f);
 ImVec4 Green = ImVec4(0, 1.0f, 0, 1.0f);
 void AddStatus(bool b)
@@ -82,18 +84,18 @@ void AddStatus(bool b)
 }
 
 template <typename T>
-void AddSlider(const char* label, T& value, T v_min, T v_max)
+void AddSlider(const char* label, T* value, T v_min, T v_max)
 {
     ImGui::SetCursorPos(ImVec2(ImGui::GetCursorPosX(), ImGui::GetCursorPosY() + 10));
 
     if constexpr (std::is_integral_v<T>)
     {
-        ImGui::SliderInt(label, &value, v_min, v_max);
+        ImGui::SliderInt(label, value, v_min, v_max);
     }
 
     if constexpr (std::is_floating_point_v<T>)
     {
-        ImGui::SliderFloat(label, &value, v_min, v_max);
+        ImGui::SliderFloat(label, value, v_min, v_max);
     }
 }
 
@@ -115,8 +117,8 @@ void  MyMenu::Draw()
 
                     if (info::sHealth)
                     {
-                        AddSlider<int>("HP", *(int*)cHealth->HP, 1, 10);
-                        AddSlider<int>("maxHP", *(int*)cHealth->maxHP, 1, 10);
+                        AddSlider<int>("HP", &*(int*)cHealth->HP, 1, 10);
+                        AddSlider<int>("maxHP", &*(int*)cHealth->maxHP, 1, 10);
                     }
 
                     ImGui::EndTabItem();
@@ -129,19 +131,12 @@ void  MyMenu::Draw()
 
                     if (info::sAmmo)
                     {
-                        AddSlider<int>("Ammo",              *(int*)cAmmo->Ammo, 0, 31);
-                        AddSlider<int>("maxAmmo",           *(int*)cGunData->maxAmmo, 0, 31);
-                        AddSlider<float>("Damage",          *(float*)cGunData->damage, 0, 200);
-                        AddSlider<float>("ShootCoolDown", *(float*)cGunData->shootCooldown, 0, 10);
-                        AddSlider<float>("ReloadDuration",  *(float*)cGunData->reloadDuration, 0, 5);
-                        AddSlider<int>("numOfProjectiles",  *(int*)cGunData->numOfProjectiles, 1, 20);
-                        AddSlider<int>("spread",            *(int*)cGunData->spread, 0, 100);
-                        AddSlider<float>("knockback",       *(float*)cGunData->knockback, 0, 100);
-                        AddSlider<float>("projectileSpeed", *(float*)cGunData->projectileSpeed, 1, 200); 
-                        AddSlider<int>("bounce",            *(int*)cGunData->bounce, 0, 8);
-                        AddSlider<int>("piercing",          *(int*)cGunData->piercing, 0, 20);
-                        AddSlider<float>("burnChance",      *(float*)cGunData, 0, 10);
-                        AddSlider<float>("inaccuracy",      *(float*)cGunData->inaccuracy, 0, 5);
+                        AddSlider<int>("maxAmmo", &*(int*)cGunData->maxAmmo, 0, 24);
+                        AddSlider<float>("damage", &*(float*)cGunData->damage, 0.f, 100.f);
+                        AddSlider<float>("shootCooldown", &*(float*)cGunData->shootCooldown, 0.100f, 3.f);
+                        AddSlider<float>("reloadDuration", &*(float*)cGunData->reloadDuration, 0.100f, 3.f);
+                        AddSlider<int>("numOfProjectiles", &*(int*)cGunData->numOfProjectiles, 1, 10);
+                        AddSlider<float>("spread", &*(float*)cGunData->spread, 0.f, 90.f);
                     }                    
 
                     ImGui::EndTabItem();
@@ -154,7 +149,7 @@ void  MyMenu::Draw()
 
                     if (info::sSpeedHack)
                     {
-                        AddSlider<float>("movementSpeed", *(float*)cPlayerController->movementSpeed, 3, 10);
+                        AddSlider<float>("movementSpeed", &*(float*)cPlayerController->movementSpeed, 3, 10);
                     }                    
 
                     ImGui::EndTabItem();
@@ -168,6 +163,21 @@ void  MyMenu::Draw()
                     if (info::sDoubleXP)
                     {
 
+                    }
+
+                    ImGui::EndTabItem();
+                }
+
+                if (ImGui::BeginTabItem("Menu Conf"))
+                {
+                    if (AddButton("Disable All"))
+                    {
+                        options->SetAllFalse();
+                    }
+
+                    if (AddButton("Enable All"))
+                    {
+                        options->SetAllTrue();
                     }
 
                     ImGui::EndTabItem();

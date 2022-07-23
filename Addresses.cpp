@@ -30,7 +30,7 @@ void Addresses::calcAddresses()
 	cGunData->reloadDuration =			(uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->reloadDuration);
 	cGunData->numOfProjectiles =		(uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->numOfProjectiles);
 	cGunData->spread =					(uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->spread);
-	cGunData->knockback =				(uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->spread);
+	cGunData->knockback =				(uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->knokback);
 	cGunData->projectileSpeed =			(uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->projectileSpeed);
 	cGunData->bounce =					(uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->bounce);
 	cGunData->piercing =				(uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->piercing);

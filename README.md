@@ -19,17 +19,7 @@ Download and inject while in the menu dll from the lastest [_Release_](https://g
 
 ## Cheat Preview
 
-- **v2.0.0**
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/87567996/180302404-f6f6dbb7-f6e0-44c1-9d94-fe24916c8fb4.jpg" width="600">
-</p>
-
-- **v1.1.0**
-
-<p align="center">
-  <img src="https://user-images.githubusercontent.com/87567996/180062952-c23f01fa-fb2d-4ce1-b41d-fc5a1096966e.JPG" width="600">
-</p>
+![ezgif com-gif-maker](https://user-images.githubusercontent.com/87567996/180602278-21e92275-4aab-49d9-9c05-0e6b752f634b.gif)
 
 ## Credits
 

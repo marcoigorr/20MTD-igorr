@@ -37,6 +37,8 @@ void Addresses::calcAddresses()
 	cGunData->burnChance =				(uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->burnChance);
 	cGunData->inaccuracy =				(uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->inaccuracy);
 	cGunData->isSummonGun =				(uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->isSummonGun);
+	// flanne.GameTimer
+	cGameTimer->timer = (uintptr_t*)mem::FindDMAAddy(localPlayer, offsets->timer);
 }
 
 Addresses* addr = new Addresses;
@@ -46,4 +48,5 @@ flanne::PlayerController* cPlayerController = new flanne::PlayerController();
 flanne::Player::PlayerXP* cPlayerXP = new flanne::Player::PlayerXP();
 flanne::StatMod* cStatMod = new flanne::StatMod();
 flanne::GunData* cGunData = new flanne::GunData();
+flanne::GameTimer* cGameTimer = new flanne::GameTimer();
 

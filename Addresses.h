@@ -68,6 +68,11 @@ namespace flanne
 		uintptr_t* inaccuracy;
 		uintptr_t* isSummonGun;
 	};
+	class GameTimer
+	{
+	public:
+		uintptr_t* timer;
+	};
 }
 
 extern Addresses* addr;
@@ -77,3 +82,4 @@ extern flanne::PlayerController* cPlayerController;
 extern flanne::Player::PlayerXP* cPlayerXP;
 extern flanne::StatMod* cStatMod;
 extern flanne::GunData* cGunData;
+extern flanne::GameTimer* cGameTimer;

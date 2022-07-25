@@ -106,7 +106,7 @@ void  MyMenu::Draw()
 	{	
 		ImGui::SetNextWindowSize({ Menu->WIDTH,  Menu->HEIGHT });
 
-        ImGui::Begin("marcoigorr v2.0.1", &options->bMenu, 0);
+        ImGui::Begin("marcoigorr v2.0.2", &options->bMenu, 0);
         {
             if (ImGui::BeginTabBar("tabs"))
             {
@@ -164,6 +164,23 @@ void  MyMenu::Draw()
                     {
                         AddSlider<float>("Additional XP", &*(float*)cStatMod->multiplierBonus, 0.f, 10.f);
                     }
+
+                    ImGui::EndTabItem();
+                }
+
+                if (ImGui::BeginTabItem("Timer"))
+                {
+                    AddStatus(info::sTimer);
+
+                    if (info::sTimer)
+                    {
+                        if (AddButton("Finish Game"))
+                        {
+                            options->bFinishGame = true;
+                        }
+
+                        AddSlider<float>("Time (seconds)", &* (float*)cGameTimer->timer, 0.f, 1200.f);
+                    }                    
 
                     ImGui::EndTabItem();
                 }

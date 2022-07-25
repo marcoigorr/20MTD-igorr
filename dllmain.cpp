@@ -109,7 +109,17 @@ DWORD WINAPI MainThread(HMODULE hModule)
             {
                 *(float*)cStatMod->multiplierBonus = 0;
             }
-        }   
+        } 
+
+        // -- Timer
+        if (cGameTimer->timer)
+        {
+            if (options->bFinishGame)
+            {
+                *(float*)cGameTimer->timer = 1200.f; // 1200s = 20m
+                options->bFinishGame = false;
+            }
+        }
 
         if (GetAsyncKeyState(VK_F1) & 1)
         {

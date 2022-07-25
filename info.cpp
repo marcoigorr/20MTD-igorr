@@ -10,6 +10,7 @@ bool info::sHealth = UNAVAIL;
 bool info::sAmmo = UNAVAIL;
 bool info::sSpeedHack = UNAVAIL;
 bool info::sDoubleXP = UNAVAIL;
+bool info::sTimer = UNAVAIL;
 
 void info::checkBadPointers()
 {
@@ -32,6 +33,11 @@ void info::checkBadPointers()
 		info::sDoubleXP = UNAVAIL;
 	else 
 		info::sDoubleXP = AVAIL;
+
+	if (!cGameTimer->timer)
+		info::sTimer = UNAVAIL;
+	else
+		info::sTimer = AVAIL;
 }
 
 

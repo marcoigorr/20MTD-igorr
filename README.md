@@ -10,6 +10,7 @@
 - Gun data manipulation
 - Speed manipulation
 - XP manipulation
+- Time manipulation
 
 ## How to use...
 
